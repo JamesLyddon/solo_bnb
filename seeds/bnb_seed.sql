@@ -1,11 +1,11 @@
 -- First, we must delete (drop) all our tables
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS listings;
-DROP TABLE IF EXISTS listing_images;
-DROP TABLE IF EXISTS bookings;
-DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS amenities;
 DROP TABLE IF EXISTS listing_amenities;
+DROP TABLE IF EXISTS listing_images;
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS bookings;
+DROP TABLE IF EXISTS listings;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS amenities;
 
 -- Then, we recreate them
 CREATE TABLE users (

@@ -1,5 +1,5 @@
 import pytest
-from lib.user import User
+from lib.models.user import User
 
 @pytest.fixture
 def user():

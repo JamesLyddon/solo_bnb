@@ -1,5 +1,5 @@
 import pytest
-from lib.listing import Listing
+from lib.models.listing import Listing
 
 @pytest.fixture
 def listing():
