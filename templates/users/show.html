@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}User{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  <h1>Single User</h1>
+  <p>Username: {{ user.username }}</p>
+  <p>Email: {{ user.email }}</p>
+
+  <!-- To have a delete button with a post request, we need a form -->
+  <!-- Note, we use `POST /books/<id>/delete because browsers can't send DELETE methods! -->
+  <form action="/users/{{ user.id }}/delete" method="post">
+    <input type="submit" value="Delete User" />
+  </form>
+  <hr />
+  <!-- This is a link to another page. -->
+  <!-- The browser will send `GET /books/new` when the user clicks this -->
+  <a href="/users">Back to all users</a>
+{% endblock %}

@@ -2,3 +2,6 @@ __pycache__
 .vscode
 .pytest_cache
 screenshot.png
+**venv**
+node_modules/
+zzz_notes.md
