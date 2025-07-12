@@ -15,6 +15,38 @@ class User:
     def __str__(self):
         return f"User({self.id}, {self.username}, {self.email}, {self.first_name}, {self.last_name})"
 
+    # These next two methods will be used by the controller to check if
+    # books are valid and if not show errors to the user.
+    def is_valid(self):
+        if self.username == None or self.username == "":
+            return False
+        if self.email == None or self.email == "":
+            return False
+        if self.password_hash == None or self.password_hash == "":
+            return False
+        if self.first_name == None or self.first_name == "":
+            return False
+        if self.last_name == None or self.last_name == "":
+            return False
+        return True
+
+    def generate_errors(self):
+        errors = []
+        if self.username == None or self.username == "":
+            errors.append("Username can't be blank")
+        if self.email == None or self.email == "":
+            errors.append("Email can't be blank")
+        if self.password_hash == None or self.password_hash == "":
+            errors.append("Password_hash can't be blank")
+        if self.first_name == None or self.first_name == "":
+            errors.append("First name can't be blank")
+        if self.last_name == None or self.last_name == "":
+            errors.append("Last name can't be blank")
+        if len(errors) == 0:
+            return None
+        else:
+            return ", ".join(errors)
+
 
     # def to_dict(self):
     #     return {

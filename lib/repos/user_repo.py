@@ -9,26 +9,43 @@ class UserRepo:
         rows = self._connection.execute('SELECT * from users')
         users = []
         for row in rows:
-            item = User(row["id"], row["username"], row["email"], row["password_hash"], row["first_name"], row["last_name"])
-            users.append(item)
+            user = User(
+                id=row['id'],
+                username=row['username'],
+                email=row['email'],
+                password_hash=row['password_hash'],
+                first_name=row['first_name'],
+                last_name=row['last_name'],
+                created_at=row['created_at'],
+                updated_at=row['updated_at']
+            )
+            users.append(user)
         return users
 
-    # # Find a single artist by their id
-    # def find(self, artist_id):
-    #     rows = self._connection.execute(
-    #         'SELECT * from artists WHERE id = %s', [artist_id])
-    #     row = rows[0]
-    #     return Artist(row["id"], row["name"], row["genre"])
+    # Find a single user by their id
+    def find(self, user_id):
+        rows = self._connection.execute(
+            'SELECT * from users WHERE id = %s', [user_id])
+        row = rows[0]
+        return User(
+                id=row['id'],
+                username=row['username'],
+                email=row['email'],
+                password_hash=row['password_hash'],
+                first_name=row['first_name'],
+                last_name=row['last_name'],
+                created_at=row['created_at'],
+                updated_at=row['updated_at']
+            )
 
-    # # Create a new artist
-    # # Do you want to get its id back? Look into RETURNING id;
-    # def create(self, artist):
-    #     self._connection.execute('INSERT INTO artists (name, genre) VALUES (%s, %s)', [
-    #                              artist.name, artist.genre])
-    #     return None
+    # Create a new user
+    def create(self, user):
+        rows = self._connection.execute('INSERT INTO users (username, email, password_hash, first_name, last_name) VALUES (%s, %s, %s, %s, %s) RETURNING id', [
+                                 user.username, user.email, user.password_hash, user.first_name, user.last_name])
+        new_id = rows[0]['id']
+        return self.find(new_id)
 
-    # # Delete an artist by their id
-    # def delete(self, artist_id):
-    #     self._connection.execute(
-    #         'DELETE FROM artists WHERE id = %s', [artist_id])
-    #     return None
+    # Delete a user by their id
+    def delete(self, user_id):
+        self._connection.execute('DELETE FROM users WHERE id = %s', [user_id])
+        return None
