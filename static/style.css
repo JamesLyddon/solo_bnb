@@ -3,3 +3,21 @@ body {
   color: cornsilk;
   background-color: steelblue;
 }
+
+.button {
+  display: inline-block; /* Makes it behave like a block but sit on one line */
+  padding: 10px 20px;
+  background-color: #007bff; /* Example blue */
+  color: white;
+  text-align: center;
+  text-decoration: none; /* Removes underline from link */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  /* Add any other styles to make it look like your form button */
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

@@ -8,7 +8,7 @@ from lib.repos.user_repo import UserRepo
 # Create a new Flask app
 app = Flask(__name__)
 
-# === User Routes Here === #
+# === User Routes === #
 
 @app.route('/users', methods=['GET'])
 def get_all_users():
@@ -30,23 +30,21 @@ def get_new_user():
 
 @app.route('/users', methods=['POST'])
 def create_user():
-    # Set up the database connection and repository
     connection = get_flask_database_connection(app)
     repo = UserRepo(connection)
-    # Get the fields from the request form
+    
     username = request.form['username']
     email = request.form['email']
     password_hash = request.form['password_hash']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    # Create a book object
+
     user = User(None, username, email, password_hash, first_name, last_name)
-    # Check for validity and if not valid, show the form again with errors
+
     if not user.is_valid():
         return render_template('users/new.html', user=user, errors=user.generate_errors()), 400
-    # Save the book to the database
+
     user = repo.create(user)
-    # Redirect to the book's show route to the user can see it
     return redirect(f"/users/{user.id}")
 
 @app.route('/users/<int:id>/delete', methods=['POST'])
