@@ -10,6 +10,11 @@ from lib.repos.listing_repo import ListingRepo
 # Create a new Flask app
 app = Flask(__name__)
 
+# === Landing Page === #
+@app.route('/', methods=['GET'])
+def get_homepage():
+    return render_template('index.html')
+
 # === User Routes === #
 
 @app.route('/users', methods=['GET'])
