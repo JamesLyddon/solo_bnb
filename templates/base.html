@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,9 +8,13 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
     <title>{% block title %}My SoloBnB{% endblock %}</title>
   </head>
   <body>
-    {% block content %}{% endblock %}
+    <div class="container mt-6 mb-6">{% block content %}{% endblock %}</div>
   </body>
 </html>

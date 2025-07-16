@@ -15,8 +15,14 @@
   <p>Max guests: {{ listing.max_guests }}</p>
 
   <form action="/listings/{{ listing.id }}/delete" method="post">
-    <input type="submit" value="Delete Listing" />
+    <input
+      type="submit"
+      value="Delete Listing"
+      class="button is-danger is-outlined"
+    />
   </form>
   <hr />
-  <a href="/listings">Back to all listings</a>
+  <a href="/listings" class="button is-primary is-outlined"
+    >Back to all listings</a
+  >
 {% endblock %}
