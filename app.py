@@ -76,7 +76,7 @@ def get_single_listing(id):
 
 @app.route('/listings/new', methods=['GET'])
 def get_new_listing():
-    return render_template('users/new.html')
+    return render_template('listings/new.html')
 
 @app.route('/listings', methods=['POST'])
 def create_listing():
