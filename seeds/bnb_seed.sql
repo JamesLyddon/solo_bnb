@@ -115,24 +115,34 @@ INSERT INTO listings (host_id, title, description, address, city, state, country
 -- 3. Listing Images
 -- Images for London Apartment (listing_id=1)
 INSERT INTO listing_images (listing_id, image_url) VALUES
-(1, 'https://example.com/images/london_apt_1.jpg'),
-(1, 'https://example.com/images/london_apt_2.jpg'),
-(1, 'https://example.com/images/london_apt_3.jpg');
+(1, 'https://images.unsplash.com/photo-1633694705199-bc1e0a87c97a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bG9uZG9uJTIwYXBhcnRtZW50fGVufDB8fDB8fHww'),
+(1, 'https://images.unsplash.com/photo-1588021624472-f8345116c8f2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bG9uZG9uJTIwYXBhcnRtZW50fGVufDB8fDB8fHww'),
+(1, 'https://media.istockphoto.com/id/1974859701/photo/pink-magnolia-blossoms-adorn-londons-streets-in-spring.webp?a=1&b=1&s=612x612&w=0&k=20&c=IETJciEXrcBlek9fPflh1gm4wEAEUIOkJePke7vc1cc=');
 
 -- Images for Countryside Home (listing_id=2)
 INSERT INTO listing_images (listing_id, image_url) VALUES
-(2, 'https://example.com/images/country_house_1.jpg'),
-(2, 'https://example.com/images/country_house_2.jpg');
+(2, 'https://plus.unsplash.com/premium_photo-1686090448728-34d6ebc43390?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNvdW50cnlzaWRlJTIwaG9tZXxlbnwwfHwwfHx8MA%3D%3D'),
+(2, 'https://plus.unsplash.com/premium_photo-1686090450479-370d5ddf4de1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNvdW50cnlzaWRlJTIwaG9tZXxlbnwwfHwwfHx8MA%3D%3D');
 
 -- Images for Beachfront Villa (listing_id=3)
 INSERT INTO listing_images (listing_id, image_url) VALUES
-(3, 'https://example.com/images/beach_villa_1.jpg'),
-(3, 'https://example.com/images/beach_villa_2.jpg'),
-(3, 'https://example.com/images/beach_villa_3.jpg');
+(3, 'https://plus.unsplash.com/premium_photo-1681922761648-d5e2c3972982?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhY2hmcm9udCUyMHZpbGxhfGVufDB8fDB8fHww'),
+(3, 'https://images.unsplash.com/photo-1707075108813-edefd7b3308d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2hmcm9udCUyMHZpbGxhfGVufDB8fDB8fHww'),
+(3, 'https://plus.unsplash.com/premium_photo-1724659217647-4bfdba75e5a6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YmVhY2hmcm9udCUyMHZpbGxhfGVufDB8fDB8fHww');
 
 -- Images for Edinburgh Loft (listing_id=4)
 INSERT INTO listing_images (listing_id, image_url) VALUES
-(4, 'https://example.com/images/edinburgh_loft_1.jpg');
+(4, 'https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWRpbmJ1cmdofGVufDB8fDB8fHww'),
+(4, 'https://images.unsplash.com/photo-1571044880241-95d4c9aa06f5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZWRpbmJ1cmdofGVufDB8fDB8fHww'),
+(4, 'https://images.unsplash.com/photo-1594800083755-8fe31b2c99df?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGVkaW5idXJnaHxlbnwwfHwwfHx8MA%3D%3D');
+
+-- Images for Rustic Cottage in Scottish Highlands (listing_id=5)
+INSERT INTO listing_images (listing_id, image_url) VALUES
+(5, 'https://images.unsplash.com/photo-1638308241052-39e2f54d10d7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGlnaGxhbmRzJTIwY290dGFnZXxlbnwwfHwwfHx8MA%3D%3D'),
+(5, 'https://images.unsplash.com/photo-1693480478901-8eaaf6a1f12a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhpZ2hsYW5kcyUyMGNvdHRhZ2V8ZW58MHx8MHx8fDA%3D'),
+(5, 'https://images.unsplash.com/photo-1511542682682-c6ea51bcb9de?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aGlnaGxhbmRzJTIwY290dGFnZXxlbnwwfHwwfHx8MA%3D%3D');
+
+
 
 -- 4. Amenities
 INSERT INTO amenities (name) VALUES

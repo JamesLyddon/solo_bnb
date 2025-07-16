@@ -1,7 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from decimal import Decimal
-
+from typing import Optional, List
 @dataclass
 class Listing:
     id: int = None
@@ -16,6 +16,8 @@ class Listing:
     max_guests: int = None
     created_at: datetime = None
     updated_at: datetime = None
+    host_username: Optional[str] = None
+    image_urls: List[str] = field(default_factory=list) # Initialize as an empty list
 
     def __str__(self):
         return f"listing({self.id}, {self.host_id}, {self.title}, {self.description}, {self.address}, {self.city}, {self.state}, {self.country}, {self.price_per_night:.2f}, {self.max_guests})"

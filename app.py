@@ -69,7 +69,7 @@ def delete_user(id):
 def get_all_listings():
     connection = get_flask_database_connection(app)
     repo = ListingRepo(connection)
-    listings = repo.all()
+    listings = repo.all_with_details()
     return render_template('listings/index.html', listings=listings)
 
 @app.route('/listings/<int:id>', methods=['GET'])

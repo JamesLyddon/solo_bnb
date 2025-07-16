@@ -3,46 +3,66 @@
   <h1>{% block title %}Listings{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-  <ul>
-    {% for listing in listings %}
-      <li>
-        <div class="card mb-6">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
+  <section class="section">
+    <div class="container">
+      <div class="media">
+        <div class="media-content">
+          <h1 class="title is-2" style="color: #B197FC;">Available Listings</h1>
+          <p class="subtitle is-4">Find your perfect stay.</p>
+        </div>
+        <div class="media-right">
+          <a
+            href="{{ url_for('get_new_listing') }}"
+            class="button"
+            style="background-color: #B197FC; color: white;"
+            >Create Listing</a
+          >
+        </div>
+      </div>
+      <div class="columns is-multiline is-variable is-3">
+        {% for listing in listings %}
+          <div
+            class="column is-one-half-desktop is-one-third-tablet is-full-mobile"
+          >
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
                   <img
-                    src="https://bulma.io/assets/images/placeholders/96x96.png"
+                    src="{{ listing.image_urls[0] }}"
                     alt="Placeholder image"
                   />
                 </figure>
               </div>
-              <div class="media-content">
-                <p class="title is-4">{{ listing.title }}</p>
-                <p class="subtitle is-6">
-                  {{ listing.city }}, {{ listing.country }}
-                </p>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ listing.title }}</p>
+                    <p class="subtitle is-6">
+                      {{ listing.city }}, {{ listing.country }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="content">{{ listing.description }}</div>
+
+                <div class="media">
+                  <div class="media-content">
+                    <h1 class="title is-3">£{{ listing.price_per_night }}</h1>
+                  </div>
+                  <div class="media-right">
+                    <a class="title is-3" href="/listings/{{ listing.id }}"
+                      ><i
+                        class="fa-solid fa-arrow-right"
+                        style="color: #B197FC;"
+                      ></i
+                    ></a>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div class="content">
-              {{ listing.description }}
-              <a href="/listings/{{ listing.id }}">Full details</a>
-              <br />
-              £{{ listing.price_per_night }}
-            </div>
           </div>
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
-  <a href="{{ url_for('get_new_listing') }}" class="button">Create Listing</a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 {% endblock %}
