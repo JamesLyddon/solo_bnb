@@ -3,51 +3,85 @@
   <h1>{% block title %}Create Listing{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-  <h1>New Listing</h1>
-  <form action="/listings" method="post">
+  <form class="container is-max-tablet" action="/listings" method="post">
     {% if errors %}
       <p>There were errors with your submission: {{ errors }}</p>
     {% endif %}
 
-    <p>
-      <label for="host_id">Host ID</label>
-      <input type="text" name="host_id" id="host_id" />
-    </p>
-    <p>
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" />
-    </p>
-    <p>
-      <label for="description">Description</label>
-      <input type="text" name="description" id="description" />
-    </p>
-    <p>
-      <label for="address">Address</label>
-      <input type="text" name="address" id="address" />
-    </p>
-    <p>
-      <label for="city">City</label>
-      <input type="text" name="city" id="city" />
-    </p>
-    <p>
-      <label for="state">State/County</label>
-      <input type="text" name="state" id="state" />
-    </p>
-    <p>
-      <label for="country">Country</label>
-      <input type="text" name="country" id="country" />
-    </p>
-    <p>
-      <label for="price_per_night">Price per night</label>
-      <input type="text" name="price_per_night" id="price_per_night" />
-    </p>
-    <p>
-      <label for="max_guests">Max guests</label>
-      <input type="text" name="max_guests" id="max_guests" />
-    </p>
+    <div class="field">
+      <label class="label" for="host_id">Host ID</label>
+      <div class="control">
+        <input
+          class="input"
+          placeholder="host ID"
+          type="text"
+          name="host_id"
+          id="host_id"
+        />
+      </div>
+    </div>
 
-    <p>
-      <input type="submit" value="Create Listing" />
-    </p>
+    <div class="field">
+      <label class="label" for="title">Title</label>
+      <div class"control">
+        <input class="input" placeholder="title" type="text" name="title" id="title" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">Description</label>
+      <div class"control">
+        <textarea class="input" placeholder="description" type="text" name="description" id="description"></textarea>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">Address</label>
+      <div class"control">
+        <input class="input" placeholder="address" type="text" name="address" id="address" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">City</label>
+      <div class"control">
+        <input class="input" placeholder="city" type="text" name="city" id="city" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">State</label>
+      <div class"control">
+        <input class="input" placeholder="state" type="text" name="state" id="state" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">Country</label>
+      <div class"control">
+        <input class="input" placeholder="country" type="text" name="country" id="country" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">Price per night</label>
+      <div class"control">
+        <input class="input" placeholder="price per night" type="text" name="price_per_night" id="price_per_night" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="title">Max guests</label>
+      <div class"control">
+        <input class="input" placeholder="max guests" type="text" name="max_guests" id="max_guests" />
+      </div>
+    </div>
+
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+    </div>
   </form>
 {% endblock %}
