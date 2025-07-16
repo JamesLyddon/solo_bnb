@@ -50,7 +50,7 @@ def create_user():
     return redirect(f"/users/{user.id}")
 
 @app.route('/users/<int:id>/delete', methods=['POST'])
-def delete_book(id):
+def delete_user(id):
     connection = get_flask_database_connection(app)
     repo = UserRepo(connection)
     repo.delete(id)
@@ -58,6 +58,56 @@ def delete_book(id):
     return redirect(url_for('get_all_users'))
 
 
+# === Listing Routes === #
+
+@app.route('/listings', methods=['GET'])
+def get_all_listings():
+    connection = get_flask_database_connection(app)
+    repo = ListingRepo(connection)
+    listings = repo.all()
+    return render_template('listings/index.html', listings=listings)
+
+@app.route('/listings/<int:id>', methods=['GET'])
+def get_single_listing(id):
+    connection = get_flask_database_connection(app)
+    repo = ListingRepo(connection)
+    listing = repo.find(id)
+    return render_template('listings/show.html', listing=listing)
+
+@app.route('/listings/new', methods=['GET'])
+def get_new_listing():
+    return render_template('users/new.html')
+
+@app.route('/listings', methods=['POST'])
+def create_listing():
+    connection = get_flask_database_connection(app)
+    repo = ListingRepo(connection)
+    
+    host_id = request.form['host_id']
+    title = request.form['title']
+    description = request.form['description']
+    address = request.form['address']
+    city = request.form['city']
+    state = request.form['state']
+    country = request.form['country']
+    price_per_night = request.form['price_per_night']
+    max_guests = request.form['max_guests']
+
+    listing = Listing(None, host_id, title, description, address, city, state, country, price_per_night, max_guests)
+
+    if not listing.is_valid():
+        return render_template('listings/new.html', listing=listing, errors=listing.generate_errors()), 400
+
+    listing = repo.create(listing)
+    return redirect(f"/listings/{listing.id}")
+
+@app.route('/listings/<int:id>/delete', methods=['POST'])
+def delete_listing(id):
+    connection = get_flask_database_connection(app)
+    repo = ListingRepo(connection)
+    repo.delete(id)
+
+    return redirect(url_for('get_all_listings'))
 
 
 

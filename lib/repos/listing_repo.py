@@ -22,7 +22,7 @@ class ListingRepo:
                 state=row['state'],
                 country=row['country'],
                 price_per_night=row['price_per_night'],
-                max_guests=row['max_guest'],
+                max_guests=row['max_guests'],
                 created_at=row['created_at'],
                 updated_at=row['updated_at']
             )

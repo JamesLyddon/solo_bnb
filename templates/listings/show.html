@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Listing{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  <h1>Single Listing</h1>
+  <p>Host ID: {{ listing.host_id }}</p>
+  <p>Title: {{ listing.title }}</p>
+  <p>Description: {{ listing.description }}</p>
+  <p>Address: {{ listing.address }}</p>
+  <p>City: {{ listing.city }}</p>
+  <p>State: {{ listing.state }}</p>
+  <p>Country: {{ listing.country }}</p>
+  <p>Price per night: {{ listing.price_per_night }}</p>
+  <p>Max guests: {{ listing.max_guests }}</p>
+
+  <form action="/listings/{{ listing.id }}/delete" method="post">
+    <input type="submit" value="Delete Listing" />
+  </form>
+  <hr />
+  <a href="/listings">Back to all listings</a>
+{% endblock %}

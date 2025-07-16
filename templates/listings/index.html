@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Listings{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  <ul>
+    {% for listing in listings %}
+      <li>
+        <a href="/listings/{{ listing.id }}">{{ listing }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('get_new_listing') }}" class="button">Create Listing</a>
+{% endblock %}
