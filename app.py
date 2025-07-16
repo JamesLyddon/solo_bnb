@@ -3,6 +3,8 @@ from flask import Flask, request, render_template, redirect, url_for
 from lib.database_connection import get_flask_database_connection
 from lib.models.user import User
 from lib.repos.user_repo import UserRepo
+from lib.models.listing import Listing
+from lib.models.listing_repo import ListingRepo
 
 
 # Create a new Flask app
