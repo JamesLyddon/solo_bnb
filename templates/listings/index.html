@@ -6,7 +6,41 @@
   <ul>
     {% for listing in listings %}
       <li>
-        <a href="/listings/{{ listing.id }}">{{ listing }}</a>
+        <div class="card mb-6">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="https://bulma.io/assets/images/placeholders/1280x960.png"
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img
+                    src="https://bulma.io/assets/images/placeholders/96x96.png"
+                    alt="Placeholder image"
+                  />
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">{{ listing.title }}</p>
+                <p class="subtitle is-6">
+                  {{ listing.city }}, {{ listing.country }}
+                </p>
+              </div>
+            </div>
+
+            <div class="content">
+              {{ listing.description }}
+              <a href="/listings/{{ listing.id }}">Full details</a>
+              <br />
+              {{ listing.price_per_night }}
+            </div>
+          </div>
+        </div>
       </li>
     {% endfor %}
   </ul>
