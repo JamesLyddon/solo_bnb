@@ -79,7 +79,7 @@ def get_all_listings():
 def get_single_listing(id):
     connection = get_flask_database_connection(app)
     repo = ListingRepo(connection)
-    listing = repo.find(id)
+    listing = repo.find_by_id_with_details(id)
     return render_template('listings/show.html', listing=listing)
 
 @app.route('/listings/new', methods=['GET'])

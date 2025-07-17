@@ -3,16 +3,64 @@
   <h1>{% block title %}Listing{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-  <h1>Single Listing</h1>
-  <p>Host ID: {{ listing.host_id }}</p>
-  <p>Title: {{ listing.title }}</p>
-  <p>Description: {{ listing.description }}</p>
-  <p>Address: {{ listing.address }}</p>
-  <p>City: {{ listing.city }}</p>
-  <p>State: {{ listing.state }}</p>
-  <p>Country: {{ listing.country }}</p>
-  <p>Price per night: {{ listing.price_per_night }}</p>
-  <p>Max guests: {{ listing.max_guests }}</p>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-multiline is-variable is-3">
+        <div class="column is-full-desktop is-one-third-tablet is-full-mobile">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img
+                  src="{{ listing.image_urls[0] }}"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img
+                  src="{{ listing.image_urls[1] }}"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img
+                  src="{{ listing.image_urls[2] }}"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">{{ listing.title }}</p>
+                  <p class="subtitle is-6">
+                    {{ listing.city }}, {{ listing.country }}
+                  </p>
+                  <p class="subtitle is-6">Host: {{ listing.host_username }}</p>
+                </div>
+              </div>
+
+              <div class="content">{{ listing.description }}</div>
+
+              <div class="media">
+                <div class="media-content">
+                  <h1 class="title is-3">£{{ listing.price_per_night }}</h1>
+                </div>
+                <div class="media-right">
+                  <a class="title is-3" style="color: #B197FC;"" href="/listings/{{ listing.id }}"
+                    >Book now!</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <form action="/listings/{{ listing.id }}/delete" method="post">
     <input
