@@ -1,47 +1,58 @@
 {% extends 'base.html' %}
 {% block header %}
-  <h1>{% block title %}Create User{% endblock %}</h1>
+  <h1>{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-  <h1>New User</h1>
-  <!-- This creates a form that will submit to POST /books -->
-  <form action="/users" method="post">
-    <!-- We check to see if there are any errors from a previous submission -->
+  <form class="container is-max-tablet" action="/users" method="post">
     {% if errors %}
-      <!-- If so, we show them. -->
       <p>There were errors with your submission: {{ errors }}</p>
     {% endif %}
 
-    <p>
-      <!-- These `label` tags are important for accessibility -->
-      <label for="username">Username</label>
+    <div class="field">
+      <label class="label" for="username">Username</label>
+      <div class="control">
+        <input
+          class="input"
+          placeholder="username"
+          type="text"
+          name="username"
+          id="username"
+        />
+      </div>
+    </div>
 
-      <!-- The `type` attribute says what kind of field this is -->
-      <!-- The `name` attribute says what parameter name should be sent to the server -->
-      <!-- The `id` field here is used to link it to the `for` tag in the label -->
-      <input type="text" name="username" id="username" />
-    </p>
-    <p>
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" />
-    </p>
-    <p>
-      <label for="password_hash">Password_hash</label>
-      <input type="text" name="password_hash" id="password_hash" />
-    </p>
-    <p>
-      <label for="first_name">First Name</label>
-      <input type="text" name="first_name" id="first_name" />
-    </p>
-    <p>
-      <label for="last_name">Last Name</label>
-      <input type="text" name="last_name" id="last_name" />
-    </p>
+    <div class="field">
+      <label class="label" for="email">Email</label>
+      <div class"control">
+        <input class="input" placeholder="email" type="text" name="email" id="email" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="password_hash">Password</label>
+      <div class"control">
+        <textarea class="input" placeholder="password_hash" type="text" name="password_hash" id="password_hash"></textarea>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="first_name">First name</label>
+      <div class"control">
+        <input class="input" placeholder="first_name" type="text" name="first_name" id="first_name" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="last_name">Last name</label>
+      <div class"control">
+        <input class="input" placeholder="last_name" type="text" name="last_name" id="last_name" />
+      </div>
+    </div>
 
-    <p>
-      <!-- `type` is submit here, to indicate it is a button -->
-      <!-- `value` is used as the button's text -->
-      <input type="submit" value="Create User" />
-    </p>
+    <div class="field">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+    </div>
   </form>
 {% endblock %}
