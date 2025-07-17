@@ -63,6 +63,17 @@ class ListingRepo:
             """
             , [listing.host_id,  listing.title, listing.description, listing.address, listing.city, listing.state, listing.country, listing.price_per_night, listing.max_guests])
         new_id = rows[0]['id']
+        
+        # === add urls to listing_images table
+        for url in listing.image_urls:
+            self._connection.execute(
+                """
+                INSERT INTO listing_images (listing_id, image_url)
+                VALUES (%s, %s)
+                """
+            , [new_id, url]
+        )
+        
         return self.find(new_id)
 
     def delete(self, listing_id):

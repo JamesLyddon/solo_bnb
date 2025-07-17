@@ -97,8 +97,12 @@ def create_listing():
     country = request.form['country']
     price_per_night = request.form['price_per_night']
     max_guests = request.form['max_guests']
+    image_urls = []
+    image_urls.append(request.form['img_url_1'])
+    image_urls.append(request.form['img_url_2'])
+    image_urls.append(request.form['img_url_3'])
 
-    listing = Listing(None, host_id, title, description, address, city, state, country, price_per_night, max_guests)
+    listing = Listing(None, host_id, title, description, address, city, state, country, price_per_night, max_guests, None, None, None, image_urls)
 
     if not listing.is_valid():
         return render_template('listings/new.html', listing=listing, errors=listing.generate_errors()), 400
