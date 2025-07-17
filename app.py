@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, flash
 from lib.database_connection import get_flask_database_connection
 from lib.models.user import User
 from lib.repos.user_repo import UserRepo
@@ -9,6 +9,8 @@ from lib.repos.listing_repo import ListingRepo
 
 # Create a new Flask app
 app = Flask(__name__)
+
+app.secret_key = 'secret_key'
 
 # === Landing Page === #
 
@@ -32,7 +34,7 @@ def get_single_user(id):
     user = repo.find(id)
     return render_template('users/show.html', user=user)
 
-@app.route('/users/new', methods=['GET'])
+@app.route('/register', methods=['GET'])
 def get_new_user():
     return render_template('users/new.html')
 
@@ -53,6 +55,11 @@ def create_user():
         return render_template('users/new.html', user=user, errors=user.generate_errors()), 400
 
     user = repo.create(user)
+    
+    session['username'] = user.username
+    session['user_id'] = user.id
+    session['user_email'] = user.email
+    
     return redirect(f"/users/{user.id}")
 
 @app.route('/users/<int:id>/delete', methods=['POST'])
@@ -60,12 +67,55 @@ def delete_user(id):
     connection = get_flask_database_connection(app)
     repo = UserRepo(connection)
     repo.delete(id)
-
+    
+    if session.get('username'):
+        session.pop('username', None)
+    if session.get('user_id'):
+        session.pop('user_id', None)
+    if session.get('first_name'):
+        session.pop('first_name', None)
+    if session.get('user_email'):
+        session.pop('user_email', None)
+        
     return redirect(url_for('get_all_users'))
 
+@app.route('/login', methods=['GET'])
+def show_log_in():
+    return render_template('users/login.html')
+
+@app.route('/login', methods=['POST'])
+def log_in():
+    connection = get_flask_database_connection(app)
+    repo = UserRepo(connection)
+    
+    username = request.form['username']
+    password = request.form['password_hash']
+    
+    users = repo.all()
+    
+    for user in users:
+        if user.username == username and user.password_hash == password:
+            session['user_id'] = user.id
+            session['first_name'] = user.first_name
+            return redirect(url_for('get_all_listings'))
+    
+    return render_template('users/login.html')
+    
+    
+
+@app.route('/logout', methods=['GET'])
+def log_out():
+    if session.get('username'):
+        session.pop('username', None)
+    if session.get('user_id'):
+        session.pop('user_id', None)
+    if session.get('first_name'):
+        session.pop('first_name', None)
+    if session.get('user_email'):
+        session.pop('user_email', None)
+    return redirect(url_for('get_all_listings'))
 
 # === Listing Routes === #
-
 
 @app.route('/', methods=['GET'])
 @app.route('/listings', methods=['GET'])
