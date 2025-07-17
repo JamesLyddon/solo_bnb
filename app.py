@@ -11,9 +11,10 @@ from lib.repos.listing_repo import ListingRepo
 app = Flask(__name__)
 
 # === Landing Page === #
-@app.route('/', methods=['GET'])
-def get_homepage():
-    return render_template('index.html')
+
+# @app.route('/', methods=['GET'])
+# def get_homepage():
+#     return render_template('index.html')
 
 # === User Routes === #
 
@@ -65,6 +66,8 @@ def delete_user(id):
 
 # === Listing Routes === #
 
+
+@app.route('/', methods=['GET'])
 @app.route('/listings', methods=['GET'])
 def get_all_listings():
     connection = get_flask_database_connection(app)
