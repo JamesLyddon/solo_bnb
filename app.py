@@ -1,16 +1,19 @@
 import os
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from lib.database_connection import get_flask_database_connection
+from dotenv import load_dotenv
 from lib.models.user import User
 from lib.repos.user_repo import UserRepo
 from lib.models.listing import Listing
 from lib.repos.listing_repo import ListingRepo
 
+# Load variables from .env file
+load_dotenv()
 
 # Create a new Flask app
 app = Flask(__name__)
 
-app.secret_key = 'secret_key'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # === Landing Page === #
 
