@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Listing{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        {# Main columns container for the whole section #}
+
+        {# --- Left Column: Large Image --- #}
+        <div class="column is-two-thirds">
+          {# Takes up 2/3 width on desktop #}
+          <div class="card-image">
+            <figure class="image is-4by3">
+              {% if listing.image_urls[0] %}
+                <img
+                  style="border-radius: 30px;"
+                  src="{{ listing.image_urls[0] }}"
+                  alt="Main listing image for {{ listing.title }}"
+                />
+              {% endif %}
+            </figure>
+          </div>
+        </div>
+
+        {# --- Right Column: Two Smaller Images --- #}
+        <div class="column is-one-third">
+          {# Takes up 1/3 width on desktop #}
+          <div class="columns is-multiline is-mobile">
+            {# Nested columns for the two smaller images #}
+            {# First small image #}
+            <div class="column">
+              {# Each takes up half of the 1/3 parent column, making them side-by-side #}
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  {% if listing.image_urls[1] %}
+                    <img
+                      style="border-radius: 30px;"
+                      src="{{ listing.image_urls[1] }}"
+                      alt="Listing image 2 for {{ listing.title }}"
+                    />
+                  {% endif %}
+                </figure>
+              </div>
+              <div class="card-image">
+                <figure class="image is-4by3 mt-4">
+                  {% if listing.image_urls[2] %}
+                    <img
+                      style="border-radius: 30px;"
+                      src="{{ listing.image_urls[2] }}"
+                      alt="Listing image 3 for {{ listing.title }}"
+                    />
+                  {% endif %}
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# --- Listing Details (below images) --- #}
+      <div class="card mt-5">
+        {# Add a top margin (mt-5) to separate from images #}
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{ listing.title }}</p>
+              <p class="subtitle is-6">
+                {{ listing.address }}, {{ listing.city }}, {{ listing.state }},
+                {{ listing.country }}
+              </p>
+            </div>
+          </div>
+
+          <div class="content">
+            <p>{{ listing.description }}</p>
+          </div>
+          <p class="subtitle is-6">Hosted by {{ listing.host_username }}</p>
+          <div class="media is-align-items-center">
+            <div class="media-left">
+              <p class="title is-3 has-text-weight-bold">
+                £{{ listing.price_per_night }}
+              </p>
+            </div>
+            <div class="media-content"></div>
+            <div class="media-right">
+              <a
+                class="button is-primary is-outlined"
+                href="{{ url_for('get_all_listings') }}"
+                >Book now!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      {# End card for details #}
+
+      {# --- Action Buttons (below card) --- #}
+      <div class="buttons is-centered mt-5">
+        <a
+          href="{{ url_for('get_all_listings') }}"
+          class="button is-primary is-outlined ml-3"
+          >Back to all listings</a
+        >
+        <form
+          action="{{ url_for('delete_listing', id=listing.id) }}"
+          method="post"
+          onsubmit="return confirm('Are you sure you want to delete this listing?');"
+        >
+          <button type="submit" class="button is-danger is-outlined">
+            Delete Listing
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}

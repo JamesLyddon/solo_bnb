@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Log in{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  <form class="container is-max-tablet" action="/login" method="post">
+
+
+    <div class="field">
+      <label class="label" for="username">Username</label>
+      <div class="control">
+        <input
+          class="input"
+          placeholder="username"
+          type="text"
+          name="username"
+          id="username"
+        />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="password_hash">Password</label>
+      <div class"control">
+        <input class="input" placeholder="password" type="password" name="password_hash" id="password_hash" />
+      </div>
+    </div>
+
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}
