@@ -20,17 +20,17 @@ class Booking:
     # These next two methods will be used by the controller to check if
     # books are valid and if not show errors to the user.
     def is_valid(self):
-        if self.listing_id == None or self.username == "":
+        if self.listing_id == None or self.listing_id == "":
             return False
-        if self.guest_id == None or self.email == "":
+        if self.guest_id == None or self.guest_id == "":
             return False
-        if self.start_date == None or self.password_hash == "":
+        if self.start_date == None or self.start_date == "":
             return False
-        if self.end_date == None or self.first_name == "":
+        if self.end_date == None or self.end_date == "":
             return False
-        if self.total_price == None or self.last_name == "":
+        if self.total_price == None or self.total_price == "":
             return False
-        if self.status == None or self.last_name == "":
+        if self.status == None or self.status == "":
             return False
         return True
 

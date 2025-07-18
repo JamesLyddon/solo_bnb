@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Create Booking{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+{% if session.title and session.price_per_night%}
+    <h1 class="title is-1 has-text-centered">{{ session.title }}</h1>
+    <h3 class="title is-3 has-text-centered">£{{ session.price_per_night }} per night</h3>
+{% endif %}
+
+  <form class="container is-max-tablet" action="/bookings" method="post">
+    {% if errors %}
+      <p>There were errors with your submission: {{ errors }}</p>
+    {% endif %}
+    <div class="field">
+      <label class="label" for="start_date">start_date</label>
+      <div class"control">
+        <input class="input" placeholder="start_date" type="date" name="start_date" id="start_date" />
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label" for="end_date">end_date</label>
+      <div class"control">
+        <input class="input" placeholder="end_date" type="date" name="end_date" id="end_date" />
+      </div>
+    </div>
+
+
+
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-link is-outlined">Confirm Booking</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

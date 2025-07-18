@@ -84,13 +84,21 @@
               </p>
             </div>
             <div class="media-content"></div>
-            <div class="media-right">
-              <a
-                class="button is-primary is-outlined"
-                href="{{ url_for('get_all_listings') }}"
-                >Book now!</a
-              >
-            </div>
+            {% if session.user_id %}
+              <div class="media-right">
+                <a
+                  class="button is-primary is-outlined"
+                  href="{{ url_for('get_new_booking') }}"
+                  >Book now!</a
+                >
+              </div>
+            {% else %}
+              <div class="media-right">
+                <a class="button is-danger is-outlined"
+                  >Log in or sign up to book a listing!</a
+                >
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>

@@ -1,11 +1,15 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for, session, flash
+from flask import Flask, request, render_template, redirect, url_for, session
 from lib.database_connection import get_flask_database_connection
 from dotenv import load_dotenv
+from datetime import datetime, timedelta, date
+from decimal import Decimal
 from lib.models.user import User
 from lib.repos.user_repo import UserRepo
 from lib.models.listing import Listing
 from lib.repos.listing_repo import ListingRepo
+from lib.models.booking import Booking
+from lib.repos.booking_repo import BookingRepo
 
 # Load variables from .env file
 load_dotenv()
@@ -133,6 +137,10 @@ def get_single_listing(id):
     connection = get_flask_database_connection(app)
     repo = ListingRepo(connection)
     listing = repo.find_by_id_with_details(id)
+    session['listing_id'] = listing.id
+    session['price_per_night'] = listing.price_per_night
+    session['host_id'] = listing.host_id
+    session['title'] = listing.title
     return render_template('listings/show.html', listing=listing)
 
 @app.route('/listings/new', methods=['GET'])
@@ -173,6 +181,62 @@ def delete_listing(id):
     repo.delete(id)
 
     return redirect(url_for('get_all_listings'))
+
+# === Booking Routes === #
+
+@app.route('/bookings', methods=['GET'])
+def get_all_bookings():
+    connection = get_flask_database_connection(app)
+    repo = BookingRepo(connection)
+    bookings = repo.all()
+    return render_template('bookings/index.html', bookings=bookings)
+
+@app.route('/bookings/new', methods=['GET'])
+def get_new_booking():
+    return render_template('bookings/new.html')
+
+@app.route('/bookings', methods=['POST'])
+def create_booking():
+    connection = get_flask_database_connection(app)
+    repo = BookingRepo(connection)
+    
+    listing_id = session['listing_id']
+    guest_id = session['user_id']
+    
+    start_date_string = request.form['start_date']
+    end_date_string = request.form['end_date']
+    
+    start_date = datetime.strptime(start_date_string, '%Y-%m-%d').date()
+    end_date = datetime.strptime(end_date_string, '%Y-%m-%d').date()
+    
+    price_per_night_decimal = Decimal(session['price_per_night'])
+    
+    duration: timedelta = end_date - start_date
+    num_days = duration.days
+    
+    total_price = price_per_night_decimal * num_days
+    
+    status = 'pending'
+
+    booking = Booking(None, listing_id, guest_id, start_date_string, end_date_string, total_price, status)
+
+    if not booking.is_valid():
+        return render_template('bookings/new.html', booking=booking, errors=booking.generate_errors()), 400
+
+    booking = repo.create(booking)
+    
+    # remove session data
+    if session.get('listing_id'):
+        session.pop('listing_id', None)
+    if session.get('price_per_night'):
+        session.pop('price_per_night', None)
+    if session.get('host_id'):
+        session.pop('host_id', None)
+    if session.get('title'):
+        session.pop('title', None)
+    
+    return redirect(f"/bookings")
+
 
 
 
