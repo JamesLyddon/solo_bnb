@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Bookings{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  <ul>
+    {% for booking in bookings %}
+      <li>
+        <a href="/bookings/{{ booking.id }}">{{ booking }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('get_new_booking') }}" class="button">Create Booking</a>
+{% endblock %}
