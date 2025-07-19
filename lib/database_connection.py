@@ -5,7 +5,7 @@ from psycopg.rows import dict_row
 class DatabaseConnection:
     DEV_DATABASE_NAME = "solo_bnb"
     TEST_DATABASE_NAME = "solo_bnb_test"
-    SEED_FILE_PATH = "../seeds/bnb_seed.sql" # <--- Define your seed file path here
+    SEED_FILE_PATH = "seeds/bnb_seed.sql" # <--- Define your seed file path here
 
     def __init__(self, test_mode=False):
         self.test_mode = test_mode
