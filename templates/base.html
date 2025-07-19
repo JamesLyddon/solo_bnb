@@ -38,7 +38,7 @@
           <div class="navbar-item">
             <div class="buttons">
               {% if session['first_name'] %}
-                <a class="button is-warning is-outlined"><strong>Hello, {{ session['first_name'] }}!</strong></a>
+                <a class="button is-info is-outlined"><strong>Hello, {{ session['first_name'] }}!</strong></a>
                 <a class="button is-primary is-outlined" href="{{ url_for('log_out') }}"><strong>Log Out</strong></a>
               {% else %}
                 <a

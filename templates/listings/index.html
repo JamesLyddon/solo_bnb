@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block header %}
-  <h1>{% block title %}Listings{% endblock %}</h1>
+  <h1>{% block title %}Solo BNB{% endblock %}</h1>
 {% endblock %}
 {% block content %}
   <section class="section">
@@ -10,13 +10,22 @@
           <h1 class="title is-2" style="color: #04d1b2;">Available Listings</h1>
           <p class="subtitle is-4">Find your perfect stay.</p>
         </div>
-        <div class="media-right">
-          <a
-            href="{{ url_for('get_new_listing') }}"
-            class="button is-primary is-outlined"
-            >Create Listing</a
-          >
-        </div>
+
+        {% if session.user_id %}
+          <div class="media-right">
+            <a
+              href="{{ url_for('get_new_listing') }}"
+              class="button is-primary is-outlined"
+              >Create Listing</a
+            >
+          </div>
+        {% else %}
+          <div class="media-right">
+            <a class="button is-danger is-outlined"
+              >Log in or sign up to create a listing!</a
+            >
+          </div>
+        {% endif %}
       </div>
       <div class="columns is-multiline is-variable is-3">
         {% for listing in listings %}

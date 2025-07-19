@@ -152,7 +152,7 @@ def create_listing():
     connection = get_flask_database_connection(app)
     repo = ListingRepo(connection)
     
-    host_id = request.form['host_id']
+    host_id = session['user_id']
     title = request.form['title']
     description = request.form['description']
     address = request.form['address']
